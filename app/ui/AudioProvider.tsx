@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useMemo, useReducer, useRef } from 'react'
 
-import { type Episode } from '@/lib/episodes'
+import { type Episode } from '@/app/lib/episodes'
 
 interface PlayerState {
   playing: boolean

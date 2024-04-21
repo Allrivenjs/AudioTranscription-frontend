@@ -1,6 +1,6 @@
 import { type Metadata } from 'next'
 
-import '@/styles/tailwind.css'
+import './ui/tailwind.css';
 
 export const metadata: Metadata = {
   title: {
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   },
   description:
     'Conversations with the most tragically misunderstood people of our time.',
+
 }
 
 export default function RootLayout({
@@ -17,6 +18,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+    console.log('layout')
   return (
     <html lang="en" className="h-full bg-white antialiased">
       <head>

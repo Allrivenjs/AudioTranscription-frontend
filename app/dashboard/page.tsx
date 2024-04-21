@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-import { Container } from '@/components/Container'
-import { EpisodePlayButton } from '@/components/EpisodePlayButton'
-import { FormattedDate } from '@/components/FormattedDate'
-import { type Episode, getAllEpisodes } from '@/lib/episodes'
+import { Container } from '@/app/ui/Container'
+import { EpisodePlayButton } from '@/app/ui/EpisodePlayButton'
+import { FormattedDate } from '@/app/ui/FormattedDate'
+import { type Episode, getAllEpisodes } from '@/app/lib/episodes'
 
 function PauseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (

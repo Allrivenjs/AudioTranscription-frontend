@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { Waveform } from '@/components/Waveform'
+import { Waveform } from '@/app/ui/Waveform'
 
 export default function NotFound() {
   return (

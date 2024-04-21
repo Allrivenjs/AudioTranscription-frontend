@@ -1,12 +1,12 @@
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
 
-import { Container } from '@/components/Container'
-import { EpisodePlayButton } from '@/components/EpisodePlayButton'
-import { FormattedDate } from '@/components/FormattedDate'
-import { PauseIcon } from '@/components/PauseIcon'
-import { PlayIcon } from '@/components/PlayIcon'
-import { getAllEpisodes } from '@/lib/episodes'
+import { Container } from '@/app/ui/Container'
+import { EpisodePlayButton } from '@/app/ui/EpisodePlayButton'
+import { FormattedDate } from '@/app/ui/FormattedDate'
+import { PauseIcon } from '@/app/ui/PauseIcon'
+import { PlayIcon } from '@/app/ui/PlayIcon'
+import { getAllEpisodes } from '@/app/lib/episodes'
 
 const getEpisode = cache(async (id: string) => {
   let allEpisodes = await getAllEpisodes()
