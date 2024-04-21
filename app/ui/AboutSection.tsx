@@ -15,7 +15,7 @@ export function AboutSection(props: React.ComponentPropsWithoutRef<'section'>) {
           colors={['fill-violet-300', 'fill-pink-300']}
           className="h-2.5 w-2.5"
         />
-        <span className="ml-2.5">About</span>
+        <span className="ml-2.5">Sobre:</span>
       </h2>
       <p
         className={clsx(
@@ -23,11 +23,9 @@ export function AboutSection(props: React.ComponentPropsWithoutRef<'section'>) {
           !isExpanded && 'lg:line-clamp-4',
         )}
       >
-        In this show, Eric and Wes dig deep to get to the facts with guests who
-        have been labeled villains by a society quick to judge, without actually
-        getting the full story. Tune in every Thursday to get to the truth with
-        another misunderstood outcast as they share the missing context in their
-        tragic tale.
+          En esta aplicación, puedes cargar cualquier archivo de audio y
+          obtener rápidamente la transcripción de las palabras habladas en él.
+          Accede fácilmente a las conversaciones de tus audios y corrígelas sin complicaciones
       </p>
       {!isExpanded && (
         <button

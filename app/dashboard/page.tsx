@@ -27,7 +27,7 @@ function PlayIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 function EpisodeEntry({ episode }: { episode: Episode }) {
   let date = new Date(episode.published)
-
+  console.log(episode.id)
   return (
     <article
       aria-labelledby={`episode-${episode.id}-title`}
@@ -39,7 +39,7 @@ function EpisodeEntry({ episode }: { episode: Episode }) {
             id={`episode-${episode.id}-title`}
             className="mt-2 text-lg font-bold text-slate-900"
           >
-            <Link href={`/${episode.id}`}>{episode.title}</Link>
+            <Link key={episode.title + episode.id} href={`./${episode.id}`}>{episode.title}</Link>
           </h2>
           <FormattedDate
             date={date}
@@ -72,7 +72,7 @@ function EpisodeEntry({ episode }: { episode: Episode }) {
               /
             </span>
             <Link
-              href={`/${episode.id}`}
+              href={`./${episode.id}`}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
               aria-label={`Show notes for episode ${episode.title}`}
             >
@@ -85,14 +85,14 @@ function EpisodeEntry({ episode }: { episode: Episode }) {
   )
 }
 
-export default async function Home() {
+export default async function Dashboard() {
   let episodes = await getAllEpisodes()
-
+  // console.log(episodes)
   return (
     <div className="pb-12 pt-16 sm:pb-4 lg:pt-12">
       <Container>
         <h1 className="text-2xl font-bold leading-7 text-slate-900">
-          Episodes
+          Conversations
         </h1>
       </Container>
       <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">

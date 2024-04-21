@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import './ui/tailwind.css';
 import { Waveform } from '@/app/ui/Waveform'
 
 export default function NotFound() {
