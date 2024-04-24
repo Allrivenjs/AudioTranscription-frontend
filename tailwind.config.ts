@@ -1,6 +1,8 @@
 import typographyPlugin from '@tailwindcss/typography'
 import { type Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
+// @ts-ignore
+import animations from '@midudev/tailwind-animations'
 
 export default {
   content: [
@@ -37,5 +39,7 @@ export default {
       },
     },
   },
-  plugins: [typographyPlugin, require('@tailwindcss/forms')],
+  plugins: [
+    animations,
+      typographyPlugin, require('@tailwindcss/forms')],
 } satisfies Config

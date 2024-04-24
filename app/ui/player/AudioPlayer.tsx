@@ -38,7 +38,7 @@ export function AudioPlayer() {
     setCurrentTime(null)
   }, [player.currentTime])
 
-  if (!player.episode) {
+  if (!player.transcription) {
     return null
   }
 
@@ -49,11 +49,11 @@ export function AudioPlayer() {
       </div>
       <div className="mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1">
         <Link
-          href={`/${player.episode.id}`}
+          href={`/${player.transcription.ID}`}
           className="truncate text-center text-sm font-bold leading-6 md:text-left"
-          title={player.episode.title}
+          title={player.transcription.title}
         >
-          {player.episode.title}
+          {player.transcription.title}
         </Link>
         <div className="flex justify-between gap-6">
           <div className="flex items-center md:hidden">

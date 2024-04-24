@@ -28,6 +28,7 @@ function WhisperLogo(props: React.ComponentPropsWithoutRef<'svg'>) {
 function GoLogo(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
       <Image src={go} alt='go logo'
+             style={{ width: 32, height: 'auto' }}
              width={32} height={32} />
 
   )

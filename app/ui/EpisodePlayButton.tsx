@@ -1,26 +1,26 @@
 'use client'
 
 import { useAudioPlayer } from '@/app/ui/AudioProvider'
-import { type Episode } from '@/app/lib/episodes'
+import { type Transcription } from '@/app/lib/episodes'
 
 export function EpisodePlayButton({
-  episode,
+                                    transcription,
   playing,
   paused,
   ...props
 }: React.ComponentPropsWithoutRef<'button'> & {
-  episode: Episode
+  transcription: Transcription
   playing: React.ReactNode
   paused: React.ReactNode
 }) {
-  let player = useAudioPlayer(episode)
+  let player = useAudioPlayer(transcription)
 
   return (
     <button
       type="button"
       onClick={() => player.toggle()}
       aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${
-        episode.title
+          transcription.title
       }`}
       {...props}
     >

@@ -6,11 +6,11 @@ import { EpisodePlayButton } from '@/app/ui/EpisodePlayButton'
 import { FormattedDate } from '@/app/ui/FormattedDate'
 import { PauseIcon } from '@/app/ui/PauseIcon'
 import { PlayIcon } from '@/app/ui/PlayIcon'
-import { getAllEpisodes } from '@/app/lib/episodes'
+import { getAllTranscription } from '@/app/lib/episodes'
 
 const getEpisode = cache(async (id: string) => {
-  let allEpisodes = await getAllEpisodes()
-  let episode = allEpisodes.find((episode) => episode.id.toString() === id)
+  let allEpisodes = await getAllTranscription()
+  let episode = allEpisodes.find((episode) => episode.ID.toString() === id)
 
   if (!episode) {
     notFound()
@@ -45,7 +45,7 @@ export default async function Episode({
         <header className="flex flex-col">
           <div className="flex items-center gap-6">
             <EpisodePlayButton
-              episode={episode}
+                transcription={episode}
               className="group relative flex h-18 w-18 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 hover:bg-slate-900 focus:outline-none focus:ring focus:ring-slate-700 focus:ring-offset-4"
               playing={
                 <PauseIcon className="h-9 w-9 fill-white group-active:fill-white/80" />
@@ -65,13 +65,13 @@ export default async function Episode({
             </div>
           </div>
           <p className="ml-24 mt-3 text-lg font-medium leading-8 text-slate-700">
-            {episode.description}
+            {episode.sort_transcription}
           </p>
         </header>
         <hr className="my-12 border-gray-200" />
         <div
           className="prose prose-slate mt-14 [&>h2:nth-of-type(3n)]:before:bg-violet-200 [&>h2:nth-of-type(3n+2)]:before:bg-indigo-200 [&>h2]:mt-12 [&>h2]:flex [&>h2]:items-center [&>h2]:font-mono [&>h2]:text-sm [&>h2]:font-medium [&>h2]:leading-7 [&>h2]:text-slate-900 [&>h2]:before:mr-3 [&>h2]:before:h-3 [&>h2]:before:w-1.5 [&>h2]:before:rounded-r-full [&>h2]:before:bg-cyan-200 [&>ul]:mt-6 [&>ul]:list-['\2013\20'] [&>ul]:pl-5"
-          dangerouslySetInnerHTML={{ __html: episode.content }}
+          dangerouslySetInnerHTML={{ __html: episode.transcription }}
         />
       </Container>
     </article>

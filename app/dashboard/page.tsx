@@ -1,9 +1,13 @@
+
 import Link from 'next/link'
 
 import { Container } from '@/app/ui/Container'
 import { EpisodePlayButton } from '@/app/ui/EpisodePlayButton'
 import { FormattedDate } from '@/app/ui/FormattedDate'
-import { type Episode, getAllEpisodes } from '@/app/lib/episodes'
+import { type Transcription, getAllTranscription } from '@/app/lib/episodes'
+import {useContext} from "react";
+import {AudioPlayerContext} from "@/app/ui/AudioProvider";
+import {CreateButton} from "@/app/ui/CreateButton";
 
 function PauseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -25,32 +29,31 @@ function PlayIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function EpisodeEntry({ episode }: { episode: Episode }) {
-  let date = new Date(episode.published)
-  console.log(episode.id)
+function TranscriptionEntry({ transcription }: { transcription: Transcription }) {
+  let date = new Date(transcription.published)
   return (
     <article
-      aria-labelledby={`episode-${episode.id}-title`}
+      aria-labelledby={`episode-${transcription.ID}-title`}
       className="py-10 sm:py-12"
     >
       <Container>
         <div className="flex flex-col items-start">
           <h2
-            id={`episode-${episode.id}-title`}
+            id={`transcription-${transcription.ID}-title`}
             className="mt-2 text-lg font-bold text-slate-900"
           >
-            <Link key={episode.title + episode.id} href={`./${episode.id}`}>{episode.title}</Link>
+            <Link key={transcription.title + transcription.ID} href={`./${transcription.ID}`}>{transcription.title}</Link>
           </h2>
           <FormattedDate
             date={date}
             className="order-first font-mono text-sm leading-7 text-slate-500"
           />
           <p className="mt-1 text-base leading-7 text-slate-700">
-            {episode.description}
+            {transcription.sort_transcription}
           </p>
           <div className="mt-4 flex items-center gap-4">
             <EpisodePlayButton
-              episode={episode}
+                transcription={transcription}
               className="flex items-center gap-x-3 text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
               playing={
                 <>
@@ -72,9 +75,9 @@ function EpisodeEntry({ episode }: { episode: Episode }) {
               /
             </span>
             <Link
-              href={`./${episode.id}`}
+              href={`./${transcription.ID}`}
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-              aria-label={`Show notes for episode ${episode.title}`}
+              aria-label={`Show notes for episode ${transcription.title}`}
             >
               Show notes
             </Link>
@@ -86,20 +89,20 @@ function EpisodeEntry({ episode }: { episode: Episode }) {
 }
 
 export default async function Dashboard() {
-  let episodes = await getAllEpisodes()
-  // console.log(episodes)
+  let transcriptions = await getAllTranscription()
   return (
     <div className="pb-12 pt-16 sm:pb-4 lg:pt-12">
       <Container>
         <h1 className="text-2xl font-bold leading-7 text-slate-900">
-          Conversations
+          Conversaciones
         </h1>
       </Container>
       <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
-        {episodes.map((episode) => (
-          <EpisodeEntry key={episode.id} episode={episode} />
+        {transcriptions.map((transcription) => (
+          <TranscriptionEntry key={transcription.ID} transcription={transcription} />
         ))}
       </div>
+      <CreateButton/>
     </div>
   )
 }

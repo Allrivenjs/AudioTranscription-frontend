@@ -1,55 +1,54 @@
-import { parse as parseFeed } from 'rss-to-json'
-import { array, number, object, parse, string } from 'valibot'
+import {parse as parseFeed} from 'rss-to-json'
+import {array, number, object, parse, string} from 'valibot'
 
-export interface Episode {
-  id: number
-  title: string
-  published: Date
-  description: string
-  content: string
-  audio: {
-    src: string
-    type: string
-  }
+export interface Transcription {
+    ID: number
+    CreatedAt: string
+    UpdatedAt: string
+    DeletedAt: string
+    title: string
+    user_id: number
+    audio_url: string
+    transcription: string
+    sort_transcription: string
+    published: Date
+    audio: {
+        src: string
+    }
 }
 
-export async function getAllEpisodes() {
-  let FeedSchema = object({
-    items: array(
-      object({
-        id: number(),
-        title: string(),
-        published: number(),
-        description: string(),
-        content: string(),
-        enclosures: array(
-          object({
-            url: string(),
-            type: string(),
-          }),
-        ),
-      }),
-    ),
-  })
+export async function getAllTranscription() {
+    const feed = await fetch('http://localhost:8080/transcription').then(res => res.json()) as {
+        data: {
+            transcriptions: Array<{
+                ID: number
+                title: string
+                transcription: string
+                sort_transcription: string
+                audio_url: string
+                CreatedAt: string
+                DeletedAt: string
+                UpdatedAt: string
+                user_id: number
+            }>
+        }
+    }
+    let items = feed.data.transcriptions
+    let transcriptions: Array<Transcription> = items.map(({ID, title, transcription, sort_transcription, audio_url, CreatedAt, DeletedAt, user_id, UpdatedAt}) => ({
+        ID,
+        title: `${ID}: ${title}`,
+        published: new Date(CreatedAt),
+        sort_transcription,
+        transcription,
+        audio_url: audio_url,
+        audio: {
+            src: audio_url,
+        },
+        CreatedAt,
+        DeletedAt: DeletedAt,
+        UpdatedAt,
+        user_id,
+    }),)
 
-  let feed = (await parseFeed(
-    'https://their-side-feed.vercel.app/api/feed',
-  )) as unknown
-  let items = parse(FeedSchema, feed).items
-
-  let episodes: Array<Episode> = items.map(
-    ({ id, title, description, content, enclosures, published }) => ({
-      id,
-      title: `${id}: ${title}`,
-      published: new Date(published),
-      description,
-      content,
-      audio: enclosures.map((enclosure) => ({
-        src: enclosure.url,
-        type: enclosure.type,
-      }))[0],
-    }),
-  )
-
-  return episodes
+    return transcriptions
 }
