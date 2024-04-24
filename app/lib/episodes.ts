@@ -1,5 +1,6 @@
 import {parse as parseFeed} from 'rss-to-json'
 import {array, number, object, parse, string} from 'valibot'
+import {ENDPOINT} from "@/app/lib/util";
 
 export interface Transcription {
     ID: number
@@ -18,7 +19,7 @@ export interface Transcription {
 }
 
 export async function getAllTranscription() {
-    const feed = await fetch('http://localhost:8080/transcription').then(res => res.json()) as {
+    const feed = await fetch(`${ENDPOINT}/transcription`).then(res => res.json()) as {
         data: {
             transcriptions: Array<{
                 ID: number
@@ -48,7 +49,7 @@ export async function getAllTranscription() {
         DeletedAt: DeletedAt,
         UpdatedAt,
         user_id,
-    }),)
+    }),).sort((a, b) => b.published.getTime() - a.published.getTime())
 
     return transcriptions
 }
