@@ -18,7 +18,9 @@ export interface Transcription {
     }
 }
 
+
 export async function getAllTranscription() {
+    console.log(`endpoint: ${ENDPOINT}/transcription`, process.env)
     const feed = await fetch(`${ENDPOINT}/transcription`).then(res => res.json()) as {
         data: {
             transcriptions: Array<{
@@ -41,9 +43,9 @@ export async function getAllTranscription() {
         published: new Date(CreatedAt),
         sort_transcription,
         transcription,
-        audio_url: audio_url,
+        audio_url: ENDPOINT + audio_url,
         audio: {
-            src: audio_url,
+            src: ENDPOINT + audio_url,
         },
         CreatedAt,
         DeletedAt: DeletedAt,

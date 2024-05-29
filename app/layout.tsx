@@ -1,5 +1,4 @@
 import { type Metadata } from 'next'
-
 import './ui/tailwind.css';
 
 export const metadata: Metadata = {
@@ -18,7 +17,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-    console.log('layout')
+
+
   return (
     <html lang="en" className="h-full bg-white antialiased">
       <head>

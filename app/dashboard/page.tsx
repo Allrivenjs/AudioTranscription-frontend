@@ -5,9 +5,8 @@ import { Container } from '@/app/ui/Container'
 import { EpisodePlayButton } from '@/app/ui/EpisodePlayButton'
 import { FormattedDate } from '@/app/ui/FormattedDate'
 import { type Transcription, getAllTranscription } from '@/app/lib/episodes'
-import {useContext} from "react";
-import {AudioPlayerContext} from "@/app/ui/AudioProvider";
 import {CreateButton} from "@/app/ui/CreateButton";
+import ListTranscription from "@/app/ui/list/ListTranscription";
 
 function PauseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -29,7 +28,7 @@ function PlayIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function TranscriptionEntry({ transcription }: { transcription: Transcription }) {
+export function TranscriptionEntry({ transcription }: { transcription: Transcription }) {
   let date = new Date(transcription.published)
   return (
     <article
@@ -89,7 +88,7 @@ function TranscriptionEntry({ transcription }: { transcription: Transcription })
 }
 
 export default async function Dashboard() {
-  let transcriptions = await getAllTranscription()
+
   return (
     <div className="pb-12 pt-16 sm:pb-4 lg:pt-12">
       <Container>
@@ -97,11 +96,7 @@ export default async function Dashboard() {
           Conversaciones
         </h1>
       </Container>
-      <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
-        {transcriptions.map((transcription) => (
-          <TranscriptionEntry key={transcription.ID} transcription={transcription} />
-        ))}
-      </div>
+      <ListTranscription />
       <CreateButton/>
     </div>
   )
