@@ -7,7 +7,10 @@ import {verifyExtension} from "@/app/lib/util";
 import {useFormState} from "react-dom";
 
 const initialState = {
-    errors: {},
+    errors: {
+        title: [],
+        audio: []
+    },
     message: ''
 }
 

@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import './ui/tailwind.css';
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: {
@@ -33,6 +34,7 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full">
+        <Toaster position="top-center" />
         <div className="w-full">{children}</div>
       </body>
     </html>

@@ -2,4 +2,6 @@
 
 import { io } from "socket.io-client";
 
-export const socket = io();
+
+const url = process.env.ENDPOINT_SOCKET
+export const socket = io(url ?? "http://localhost:3001");

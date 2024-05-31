@@ -20,7 +20,6 @@ export interface Transcription {
 
 
 export async function getAllTranscription() {
-    console.log(`endpoint: ${ENDPOINT}/transcription`, process.env)
     const feed = await fetch(`${ENDPOINT}/transcription`).then(res => res.json()) as {
         data: {
             transcriptions: Array<{

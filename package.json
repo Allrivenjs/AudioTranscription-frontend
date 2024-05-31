@@ -27,6 +27,7 @@
     "react": "^18.2.0",
     "react-aria": "^3.19.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-stately": "^3.17.0",
     "rss-to-json": "^2.1.0",
     "socket.io": "^4.7.5",

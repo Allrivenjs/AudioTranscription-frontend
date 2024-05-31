@@ -7,6 +7,7 @@ import {ENDPOINT, verifyExtension} from "@/app/lib/util";
 import {revalidate} from "@/app/dashboard/page";
 import {revalidatePath} from "next/cache";
 import {redirect} from "next/navigation";
+import {toast} from "react-hot-toast";
 
 export async function authenticate(
     prevState: string | undefined,
@@ -62,6 +63,7 @@ export async function formCreateAction(
         method: 'POST',
         body: formData,
     }).then(res => res.json());
+
 
     revalidatePath('/dashboard');
     redirect('/dashboard');

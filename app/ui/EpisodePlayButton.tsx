@@ -14,7 +14,6 @@ export function EpisodePlayButton({
   paused: React.ReactNode
 }) {
   let player = useAudioPlayer(transcription)
-  console.log(transcription)
   return (
     <button
       type="button"
