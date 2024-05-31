@@ -10,7 +10,6 @@ import { getAllTranscription } from '@/app/lib/episodes'
 
 const getEpisode = cache(async (id: string) => {
   let allEpisodes = await getAllTranscription()
-
   let episode = allEpisodes.find((episode) => episode.ID.toString() === id)
   console.log(episode, allEpisodes.map((e) => e.ID))
   if (!episode) {

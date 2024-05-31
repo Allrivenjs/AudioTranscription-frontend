@@ -20,6 +20,7 @@ export interface Transcription {
 
 
 export async function getAllTranscription() {
+    console.log(`${ENDPOINT}/transcription`)
     const feed = await fetch(`${ENDPOINT}/transcription`).then(res => res.json()) as {
         data: {
             transcriptions: Array<{
@@ -51,6 +52,6 @@ export async function getAllTranscription() {
         UpdatedAt,
         user_id,
     }),).sort((a, b) => b.published.getTime() - a.published.getTime())
-
+    console.log(transcriptions);
     return transcriptions
 }
