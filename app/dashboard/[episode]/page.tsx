@@ -25,6 +25,7 @@ export async function generateMetadata({
 }: {
   params: { episode: string }
 }) {
+  console.log('params', params)
   let episode = await getEpisode(params.episode)
 
   return {
