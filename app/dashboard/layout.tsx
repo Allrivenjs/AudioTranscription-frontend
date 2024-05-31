@@ -13,9 +13,8 @@ import next from '@/public/icons/nextjs-icon-svgrepo-com.svg';
 import cloudflare from '@/public/icons/cloudflare-icon.svg';
 
 import posterImage from '@/public/logos/principal_logo_cp.jpg'
-import {PowerIcon} from "@heroicons/react/16/solid";
-import {signOut} from "@/auth";
 import '@/app/ui/tailwind.css'
+import type {Metadata} from "next";
 
 function WhisperLogo(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -56,13 +55,23 @@ function PersonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+export const metadata: Metadata = {
+  title: {
+    template: '%s - Their Side',
+    default:
+        'Their Side - Conversations with the most tragically misunderstood people of our time',
+  },
+  description:
+      'Conversations with the most tragically misunderstood people of our time.',
+
+}
+
 export default function MainLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   let hosts = ['Jaime Andres Ruiz']
-
   return (
     <AudioProvider>
       <header className="bg-slate-50 lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-112 lg:items-start lg:overflow-y-auto xl:w-120 pb-4">
