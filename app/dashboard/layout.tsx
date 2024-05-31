@@ -113,7 +113,7 @@ export default function MainLayout({
               <Link href="/public">Las palabras a texto</Link>
             </p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
-              KONverSAsjoNes ke se koNverTjen en paLaBRas eskritas {/*  La fonética humana convertida a caracteres escritos */}
+              La fonética humana convertida a caracteres escritos
             </p>
           </div>
           <AboutSection className="mt-12 hidden lg:block"/>
