@@ -2,8 +2,8 @@
 const nextConfig = {
     trailingSlash: true,
     env: {
-        ENDPOINT_BACKEND : "https://backend.audiotranscription.cc/",
-        ENDPOINT_SOCKET : "https://socket.audiotranscription.cc/"
+        ENDPOINT_BACKEND : "https://backend.audiotranscription.cc",
+        ENDPOINT_SOCKET : "https://socket.audiotranscription.cc"
     },
     experimental: {
         serverActions: {
