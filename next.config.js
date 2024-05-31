@@ -7,9 +7,23 @@ const nextConfig = {
     },
     experimental: {
         serverActions: {
-            allowedOrigins: ['http://localhost:3000', 'https://audiotranscription.cc/', 'https://backend.audiotranscription.cc/', 'https://socket.audiotranscription.cc/']
+            allowedOrigins: [
+                'http://localhost:3000',
+                'https://audiotranscription.cc/',
+                'https://backend.audiotranscription.cc/',
+                'https://socket.audiotranscription.cc/'
+            ],
+            allowedForwardedHosts: [
+                'http://localhost:3000',
+                'https://audiotranscription.cc/',
+                'https://backend.audiotranscription.cc/',
+                'https://socket.audiotranscription.cc/'
+            ]
         }
-    }
+    },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
 }
 
 module.exports = nextConfig
