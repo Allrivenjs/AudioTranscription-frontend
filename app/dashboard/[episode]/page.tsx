@@ -8,23 +8,21 @@ import { PauseIcon } from '@/app/ui/PauseIcon'
 import { PlayIcon } from '@/app/ui/PlayIcon'
 import { getAllTranscription } from '@/app/lib/episodes'
 
-const getEpisode = cache(async (id: string) => {
+const getEpisode = async (id: string) => {
   let allEpisodes = await getAllTranscription()
   let episode = allEpisodes.find((episode) => episode.ID.toString() === id)
-  console.log(episode, allEpisodes.map((e) => e.ID))
   if (!episode) {
     notFound()
   }
 
   return episode
-})
+}
 
 export async function generateMetadata({
   params,
 }: {
   params: { episode: string }
 }) {
-  console.log('params', params)
   let episode = await getEpisode(params.episode)
 
   return {

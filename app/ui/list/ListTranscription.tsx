@@ -11,7 +11,6 @@ export default  function ListTranscription() {
 
     const fetchTranscriptions = () => {
         getAllTranscription().then((transcriptions) => {
-            console.log("transcripciones", transcriptions)
             setTranscriptions(transcriptions)
         })
     }
