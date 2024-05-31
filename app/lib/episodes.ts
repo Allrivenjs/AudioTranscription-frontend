@@ -21,7 +21,7 @@ export interface Transcription {
 
 export async function getAllTranscription() {
     console.log(`${ENDPOINT}/transcription`)
-    const feed = await fetch(`${ENDPOINT}/transcription`).then(res => res.json()) as {
+    const feed = await fetch(`${ENDPOINT}/transcription`, { cache: 'no-store' }).then(res => res.json()) as {
         data: {
             transcriptions: Array<{
                 ID: number
