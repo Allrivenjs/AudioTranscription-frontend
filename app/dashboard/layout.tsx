@@ -15,6 +15,7 @@ import cloudflare from '@/public/icons/cloudflare-icon.svg';
 import posterImage from '@/public/logos/principal_logo_cp.jpg'
 import '@/app/ui/tailwind.css'
 import type {Metadata} from "next";
+import {signOut} from "@/auth";
 
 function WhisperLogo(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -55,6 +56,14 @@ function PersonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+function LogoutIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 16L21 12M21 12L17 8M21 12L7 12M13 16V17C13 18.6569 11.6569 20 10 20H6C4.34315 20 3 18.6569 3 17V7C3 5.34315 4.34315 4 6 4H10C11.6569 4 13 5.34315 13 7V8" stroke="#374151" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/>
+    </svg>
+  )
+}
+
 export const metadata: Metadata = {
   title: {
     template: '%s - Their Side',
@@ -90,10 +99,24 @@ export default function MainLayout({
                 </Fragment>
             ))}
           </span>
-        </div>
-        {/* Poster y text explicatorios */}
-        <div
-            className="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-slate-200 lg:px-8 lg:py-12 xl:px-12">
+          <form
+              action={async () => {
+                'use server';
+                await signOut();
+              }}
+          >
+            <span className="mt-6 flex gap-6 font-bold text-slate-900">
+                    <button
+                        className="flex h-[48px] w-full justify-center items-center grow gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start">
+                        <LogoutIcon className="w-6" />
+                    </button>
+
+            </span>
+          </form>
+      </div>
+      {/* Poster y text explicatorios */}
+      <div
+          className="relative z-10 mx-auto px-4 pb-4 pt-10 sm:px-6 md:max-w-2xl md:px-4 lg:min-h-full lg:flex-auto lg:border-x lg:border-slate-200 lg:px-8 lg:py-12 xl:px-12">
           <Link
               href="/public"
               className="relative mx-auto block w-48 overflow-hidden rounded-lg bg-slate-200 shadow-xl shadow-slate-200 sm:w-64 sm:rounded-xl lg:w-auto lg:rounded-2xl"
@@ -149,21 +172,6 @@ export default function MainLayout({
                     </Link>
                   </li>
               ))}
-              {/*  Button sign out */}
-              {/*<li>*/}
-              {/*  <form*/}
-              {/*      action={async () => {*/}
-              {/*        'use server';*/}
-              {/*        await signOut();*/}
-              {/*      }}*/}
-              {/*  >*/}
-              {/*    <button*/}
-              {/*        className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">*/}
-              {/*      <PowerIcon className="w-6"/>*/}
-              {/*      <div className="hidden md:block">Sign Out</div>*/}
-              {/*    </button>*/}
-              {/*  </form>*/}
-              {/*</li>*/}
             </ul>
           </section>
         </div>
